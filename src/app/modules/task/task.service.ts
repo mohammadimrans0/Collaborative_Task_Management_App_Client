@@ -4,29 +4,29 @@ import { paginationHelpers } from '../../../helpers/paginationHelper'
 import { IGenericResponse } from '../../../interfaces/common'
 import { IPaginationOptions } from '../../../interfaces/pagination'
 import prisma from '../../../shared/prisma'
-import { IUserFilterRequest } from './user.interface'
-import { UserSearchableFields } from './user.constant'
-import { Prisma, User } from '@prisma/client'
+import { ITaskFilterRequest } from './task.interface'
+import { TaskSearchableFields } from './task.constant'
+import { Prisma, Task } from '@prisma/client'
 
-const insertIntoDB = async (UserData: User): Promise<User> => {
-  const result = await prisma.user.create({
-    data: UserData,
+const insertIntoDB = async (TaskData: Task): Promise<Task> => {
+  const result = await prisma.task.create({
+    data: TaskData,
   })
 
   return result
 }
 
 const getAllFromDB = async (
-  filters: IUserFilterRequest,
+  filters: ITaskFilterRequest,
   options: IPaginationOptions
-): Promise<IGenericResponse<User[]>> => {
+): Promise<IGenericResponse<Task[]>> => {
   const { page, limit, skip } = paginationHelpers.calculatePagination(options)
   const { searchTerm, ...filterData } = filters
   const andConditions = []
 
   if (searchTerm) {
     andConditions.push({
-      OR: UserSearchableFields.map(field => ({
+      OR: TaskSearchableFields.map(field => ({
         [field]: {
           contains: searchTerm,
           mode: 'insensitive',
@@ -45,10 +45,10 @@ const getAllFromDB = async (
     })
   }
 
-  const whereConditions: Prisma.UserWhereInput =
+  const whereConditions: Prisma.TaskWhereInput =
     andConditions.length > 0 ? { AND: andConditions } : {}
 
-  const result = await prisma.user.findMany({
+  const result = await prisma.task.findMany({
     where: whereConditions,
     skip,
     take: limit,
@@ -62,7 +62,7 @@ const getAllFromDB = async (
           },
   })
 
-  const total = await prisma.user.count()
+  const total = await prisma.task.count()
 
   return {
     meta: {
@@ -74,8 +74,8 @@ const getAllFromDB = async (
   }
 }
 
-const getDataById = async (id: string): Promise<User | null> => {
-  const result = await prisma.user.findUnique({
+const getDataById = async (id: string): Promise<Task | null> => {
+  const result = await prisma.task.findUnique({
     where: {
       id,
     },
@@ -86,9 +86,9 @@ const getDataById = async (id: string): Promise<User | null> => {
 
 const updateOneInDB = async (
   id: string,
-  payload: Partial<User>
-): Promise<User> => {
-  const result = await prisma.user.update({
+  payload: Partial<Task>
+): Promise<Task> => {
+  const result = await prisma.task.update({
     where: {
       id,
     },
@@ -97,8 +97,8 @@ const updateOneInDB = async (
   return result
 }
 
-const deleteByIdFromDB = async (id: string): Promise<User> => {
-  const result = await prisma.user.delete({
+const deleteByIdFromDB = async (id: string): Promise<Task> => {
+  const result = await prisma.task.delete({
     where: {
       id,
     },
@@ -106,7 +106,7 @@ const deleteByIdFromDB = async (id: string): Promise<User> => {
   return result
 }
 
-export const UserService = {
+export const TaskService = {
   insertIntoDB,
   getAllFromDB,
   getDataById,

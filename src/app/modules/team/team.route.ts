@@ -2,6 +2,7 @@ import express from 'express'
 import validateRequest from '../../middleware/validateRequest'
 import { TeamController } from './team.controller'
 import { TeamValidation } from './team.validation'
+
 const router = express.Router()
 
 router.get('/:id', TeamController.getDataById)

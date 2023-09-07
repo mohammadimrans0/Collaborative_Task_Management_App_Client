@@ -1,23 +1,26 @@
 import express from 'express'
 import validateRequest from '../../middleware/validateRequest'
-import { UserValidation } from './user.validation'
-import { UserController } from './user.controller'
+import { TaskValidation } from './task.validation'
+import { TaskController } from './task.controller'
+
 const router = express.Router()
 
-router.get('/', UserController.getAllFromDB)
-router.get('/:id', UserController.getDataById)
+router.get('/', TaskController.getAllFromDB)
+
+router.get('/:id', TaskController.getDataById)
+
 router.post(
   '/',
-  validateRequest(UserValidation.createUser),
-  UserController.insertIntoDB
+  validateRequest(TaskValidation.createTask),
+ TaskController.insertIntoDB
 )
 
 router.patch(
   '/:id',
-  validateRequest(UserValidation.updateUser),
-  UserController.updateOneInDB
+  validateRequest(TaskValidation.updateTask),
+ TaskController.updateOneInDB
 )
 
-router.delete('/:id', UserController.deleteByIdFromDB)
+router.delete('/:id', TaskController.deleteByIdFromDB)
 
-export const UserRoutes = router
+export const TaskRoutes = router

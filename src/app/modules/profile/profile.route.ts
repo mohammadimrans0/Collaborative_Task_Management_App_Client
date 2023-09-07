@@ -2,6 +2,7 @@ import express from 'express'
 import validateRequest from '../../middleware/validateRequest'
 import { ProfileController } from './profile.controller'
 import { ProfileValidation } from './profile.validation'
+
 const router = express.Router()
 
 router.get('/:id', ProfileController.getDataById)

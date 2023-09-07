@@ -3,6 +3,7 @@ import { UserRoutes } from '../modules/user/user.route'
 import { ProfileRoutes } from '../modules/profile/profile.route'
 import { TeamRoutes } from '../modules/team/team.route'
 import { TeamMemberRoutes } from '../modules/teamMember/teamMember.route'
+import { TaskRoutes } from '../modules/task/task.route'
 
 const router = express.Router()
 
@@ -25,7 +26,7 @@ const moduleRoutes = [
   },
   {
     path: '/task',
-    route: TeamMemberRoutes
+    route: TaskRoutes
   },
 ]
 

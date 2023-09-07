@@ -2,10 +2,11 @@ import express from 'express'
 import validateRequest from '../../middleware/validateRequest'
 import { UserValidation } from './user.validation'
 import { UserController } from './user.controller'
+
 const router = express.Router()
 
-router.get('/', UserController.getAllFromDB)
 router.get('/:id', UserController.getDataById)
+
 router.post(
   '/',
   validateRequest(UserValidation.createUser),
