@@ -1,6 +1,4 @@
 import express from 'express'
-// import { ENUM_USER_ROLE } from '../../../enums/user'
-// import auth from '../../middleware/auth'
 import validateRequest from '../../middleware/validateRequest'
 import { UserValidation } from './user.validation'
 import { UserController } from './user.controller'
@@ -10,20 +8,18 @@ router.get('/', UserController.getAllFromDB)
 router.get('/:id', UserController.getDataById)
 router.post(
   '/',
-  validateRequest(UserValidation.create),
+  validateRequest(UserValidation.createUser),
   UserController.insertIntoDB
 )
 
 router.patch(
   '/:id',
-  //   validateRequest(AcademicSemesterValidation.update),
-  //   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+    validateRequest(UserValidation.updateUser),
   UserController.updateOneInDB
 )
 
 router.delete(
   '/:id',
-  //   auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
   UserController.deleteByIdFromDB
 )
 
