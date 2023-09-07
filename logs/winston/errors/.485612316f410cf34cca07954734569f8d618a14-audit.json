@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Projects\\my-projects\\Collaborative Task Management App\\logs\\winston\\errors\\.485612316f410cf34cca07954734569f8d618a14-audit.json",
+    "files": [
+        {
+            "date": 1694093900851,
+            "name": "C:\\Projects\\my-projects\\Collaborative Task Management App\\logs\\winston\\errors\\phu-2023-07-09-19-error.log",
+            "hash": "2117af526a89e0fc3139ee126877033e0777eb34fb79a1aefce2b69bee33d745"
+        }
+    ],
+    "hashType": "sha256"
+}

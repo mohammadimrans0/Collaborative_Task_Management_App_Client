@@ -5,7 +5,7 @@ import ApiError from '../../errors/ApiError'
 import config from '../../config'
 import { ZodError } from 'zod'
 import handleZodError from '../../errors/handleZodError'
-import handleCastError from '../../errors/handleCastError'
+import handleCastError from '../../errors/handleClientError'
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res) => {
   let statusCode = 500
