@@ -1,6 +1,8 @@
 import express from 'express'
 import { UserRoutes } from '../modules/user/user.route'
 import { ProfileRoutes } from '../modules/profile/profile.route'
+import { TeamRoutes } from '../modules/team/team.route'
+import { TeamMemberRoutes } from '../modules/teamMember/teamMember.route'
 
 const router = express.Router()
 
@@ -14,12 +16,16 @@ const moduleRoutes = [
     route: ProfileRoutes
   },
   {
-    path: '/users',
-    route: UserRoutes
+    path: '/team',
+    route: TeamRoutes
   },
   {
-    path: '/users',
-    route: UserRoutes
+    path: '/team-member',
+    route: TeamMemberRoutes
+  },
+  {
+    path: '/task',
+    route: TeamMemberRoutes
   },
 ]
 
